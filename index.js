@@ -10,7 +10,10 @@ const correctMessage = document.getElementById('correct');
 
 let targetNumber;
 let attempts = 0;
-const maxNumberOfAttempts = 5;
+//5. switched const to let for maxNumberofAttempts
+let maxNumberOfAttempts = 5;
+
+
 
 // Returns a random number from min (inclusive) to max (exclusive)
 // Usage:
@@ -43,7 +46,8 @@ function checkGuess() {
     if (guess < targetNumber) {
       tooLowMessage.style.display = '';
     } else {
-      tooLowMessage.style.display = '';
+      //6. both were "tooLowMessage" changed second one to "tooHighMessage"
+      tooHighMessage.style.display = '';
     }
 
     const remainingAttempts = maxNumberOfAttempts - attempts;
@@ -51,8 +55,8 @@ function checkGuess() {
     numberOfGuessesMessage.style.display = '';
     numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
   }
-
-  if (attempts ==== maxNumberOfAttempts) {
+// 1.removed extra "="
+  if (attempts === maxNumberOfAttempts) {
     submitButton.disabled = true;
     guessInput.disabled = true;
   }
@@ -63,22 +67,26 @@ function checkGuess() {
 }
 
 function hideAllMessages() {
-  for (let elementIndex = 0; elementIndex <= messages.length; elementIndex++) {
+  //7. added "- 1"
+  for (let elementIndex = 0; elementIndex <= messages.length - 1; elementIndex++) {
     messages[elementIndex].style.display = 'none';
   }
 }
-
-funtion setup() {
+// 2. function was missing the letter "c"
+function setup() {
   // Get random number
   targetNumber = getRandomNumber(1, 100);
   console.log(`target number: ${targetNumber}`);
 
   // Reset number of attempts
-  maxNumberOfAttempts = 0;
+  //4. switched maxNumberofAttempts to attempts
+  attempts = 0;
 
   // Enable the input and submit button
-  submitButton.disabeld = false;
+  //3. disabled was misspelled as "disabeld"
+  submitButton.disabled = false;
   guessInput.disabled = false;
+   guessInput.value=""; // 8. Clears input on reset
 
   hideAllMessages();
   resetButton.style.display = 'none';
